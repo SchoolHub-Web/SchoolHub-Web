@@ -1,11 +1,11 @@
 export interface Grade {
-  id: number;
-  value: string;
+  id?: number;
+  value: number;
   timestamp: string;
 }
 
 export interface Absence {
-  id: number;
+  id?: number;
   excused: boolean;
   timestamp: string;
 }

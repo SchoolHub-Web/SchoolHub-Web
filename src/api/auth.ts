@@ -74,8 +74,6 @@ export async function logout() {
 
 interface JWTPayload {
   id: number;
-  restaurantID: number;
-  isMasterAdmin: boolean;
 }
 
 export async function isLogged(): Promise<JWTPayload | false> {

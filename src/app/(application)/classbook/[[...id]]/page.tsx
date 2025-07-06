@@ -1,35 +1,47 @@
-'use client';
-
 import GradesCard from '@/components/grades-card';
 import AbsencesCard from '@/components/absences-card';
 import SubjectHeaderCard from '@/components/subject-header-card';
-import { Absence, Grade } from '@/types';
+import { getSubjects } from '@/api/subjects';
+import { btoa } from 'node:buffer';
 
-export default function Page({ params }: { params: { id: number[] } }) {
-  const grades: Grade[] = [
-    {
-      id: 1,
-      value: '10',
-      timestamp: '2022-01-01T00:00:00.000Z'
-    }
-  ];
-  const absences: Absence[] = [
-    {
-      id: 1,
-      excused: false,
-      timestamp: '2022-01-01T00:00:00.000Z'
-    }
-  ];
-  const subject = {
-    name: 'Math',
-    icon: 'leaf'
-  };
+function toAlphanumeric(input: string): string {
+  return input
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]/g, '');
+}
 
-  const subjectGrades = grades.length;
-  const maxGrades = 2;
-  const average = 3;
-  const absencesCount = absences.length;
-  const unexcusedAbsences = absences?.filter(
+export default async function Page({ params }: { params: { id: string[] } }) {
+  const subjects = await getSubjects();
+
+  if (!subjects) {
+    return (
+      <h1 className='flex h-full w-full items-center justify-center text-[2rem] font-semibold text-primary-400'>
+        No subjects found
+      </h1>
+    );
+  }
+
+  if (!params?.id?.length) {
+    return (
+      <h1 className='flex h-full w-full items-center justify-center text-[2rem] font-semibold text-primary-400'>
+        No subject selected
+      </h1>
+    );
+  }
+
+  const subject = subjects.find(
+    (subject) =>
+      encodeURIComponent(btoa(toAlphanumeric(subject.name))) === params.id[0]
+  )!;
+
+  const subjectGrades = subject.grades.length;
+  const maxGrades = 4;
+  const average =
+    subject.grades.reduce((acc, curr) => acc + curr.value, 0) /
+    subject.grades.length;
+  const absencesCount = subject.absences.length;
+  const unexcusedAbsences = subject.absences?.filter(
     (absence) => !absence.excused
   ).length;
 
@@ -47,8 +59,8 @@ export default function Page({ params }: { params: { id: number[] } }) {
             title={subject?.name ?? ''}
             icon={subject?.icon ?? 'leaf'}
           />
-          <GradesCard grades={grades} />
-          <AbsencesCard absences={absences} />
+          <GradesCard grades={subject.grades} />
+          <AbsencesCard absences={subject.absences} />
         </>
       ) : (
         <h1 className='flex h-full w-full items-center justify-center text-[2rem] font-semibold text-primary-400'>

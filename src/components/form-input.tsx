@@ -9,20 +9,24 @@ export default function FormInput({
   label,
   password = false,
   register,
-  error
+  error,
+  disabled = false
 }: {
   placeholder: string;
   label: string;
   password?: boolean;
   register: any;
   error?: string;
+  disabled?: boolean;
 }) {
   const [hidden, setHidden] = useState(true);
 
   return (
     <motion.div layout>
       <Input
+        disabled={disabled}
         {...register}
+        autoComplete='new-password'
         classNames={{
           label: 'text-black font-semibold text-base hidden sm:block',
           inputWrapper: 'rounded-full shadow-none',

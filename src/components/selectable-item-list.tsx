@@ -19,10 +19,10 @@ export default function SelectableItemList({
           key={index}
           className={cn(
             'flex cursor-pointer items-center rounded-[0.635rem] px-1.5',
-            +item.id == selected ? 'bg-secondary-500' : ''
+            item.id == selected ? 'bg-secondary-500' : ''
           )}
           onClick={() => {
-            onSelected(+item.id);
+            onSelected(item.id);
           }}
         >
           {item.icon ? (

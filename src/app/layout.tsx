@@ -4,6 +4,8 @@ import './globals.css';
 import { ReactNode } from 'react';
 import '@/lib/fontawesome/css/fa.css';
 import { Toaster } from '@/components/ui/toaster';
+import { getSubjects } from '@/api/subjects';
+import { parseSubjects } from '@/lib/nic-parser';
 
 const inter = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
   description: 'Your all-in-one learning app'
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: ReactNode;
