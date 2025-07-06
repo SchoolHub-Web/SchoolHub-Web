@@ -1,3 +1,5 @@
+'use client';
+
 import { Tab, Tabs } from '@nextui-org/tabs';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';

@@ -4,7 +4,7 @@ import { db } from '@/db/db';
 import { firstRow } from '@/lib/db-utils';
 import { compare, hash } from 'bcrypt';
 import { eq } from 'drizzle-orm';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import envConfig from '../../env.config';
 import { users } from '@/db/schema/users';
@@ -69,5 +69,25 @@ export async function register(email: string, password: string) {
 }
 
 export async function logout() {
-  (await cookies()).delete('session');
+  cookies().delete('session');
+}
+
+interface JWTPayload {
+  id: number;
+  restaurantID: number;
+  isMasterAdmin: boolean;
+}
+
+export async function isLogged(): Promise<JWTPayload | false> {
+  const token = cookies().get('session')?.value;
+
+  if (!token) {
+    return false;
+  }
+
+  try {
+    return verify(token, envConfig.JWT_SECRET) as JWTPayload;
+  } catch (e) {
+    return false;
+  }
 }
