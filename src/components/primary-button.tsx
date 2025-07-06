@@ -4,16 +4,19 @@ import { ReactNode } from 'react';
 export default function PrimaryButton({
   children,
   className = '',
-  type = 'button'
+  type = 'button',
+  onClick
 }: {
   children: ReactNode;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
 }) {
   return (
     <Button
+      onClick={onClick}
       type={type}
-      className={`bg-secondary-500 rounded-full text-white text-base font-semibold !px-2.5 !py-2.5 !h-auto ${className}`}
+      className={`!h-auto rounded-full bg-secondary-500 !px-2.5 !py-2.5 text-base font-semibold text-white ${className}`}
     >
       {children}
     </Button>
