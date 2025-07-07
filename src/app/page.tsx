@@ -43,7 +43,7 @@ const applications: AppCardProps[] = [
     title: 'QuizCraft',
     description: 'Build quizzes for free using AI in minutes from your notes',
     icon: <BrainCircuit className='h-8 w-8' />,
-    href: 'https://literaria.info/'
+    href: 'https://quiz-craft-one.vercel.app/'
   }
 ];
 
