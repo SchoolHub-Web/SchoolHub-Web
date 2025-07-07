@@ -26,6 +26,7 @@ export interface UpdateProfileDto {
   email?: string;
   NICUser?: string;
   NICPassword?: string;
+  NICURL?: string;
   GeminiKey?: string;
 }
 
@@ -42,6 +43,7 @@ export async function updateProfile(updateProfileDto: UpdateProfileDto) {
       email: updateProfileDto.email,
       NICUser: updateProfileDto.NICUser,
       NICPassword: updateProfileDto.NICPassword,
+      NICURL: updateProfileDto.NICURL,
       GeminiKey: updateProfileDto.GeminiKey
     })
     .where(eq(users.id, account.id));

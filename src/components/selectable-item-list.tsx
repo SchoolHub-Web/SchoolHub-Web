@@ -25,16 +25,16 @@ export default function SelectableItemList({
             onSelected(item.id);
           }}
         >
-          {item.icon ? (
-            <img className='mr-3 w-9' src={`/${item.icon}.png`} alt='icon' />
-          ) : (
-            ''
-          )}
+          {/*{item.icon ? (*/}
+          {/*  <img className='mr-3 w-9' src={`/${item.icon}.png`} alt='icon' />*/}
+          {/*) : (*/}
+          {/*  ''*/}
+          {/*)}*/}
           <div className='flex grow items-center justify-between gap-4 border-b-1 border-b-black/5 py-2.5'>
             <h3
               className={cn(
                 'text-[0.9375rem] font-semibold',
-                +item.id == selected ? 'text-primary-50' : 'text-primary-900'
+                item.id == selected ? 'text-primary-50' : 'text-primary-900'
               )}
             >
               {item.name}
@@ -44,9 +44,7 @@ export default function SelectableItemList({
                 <label
                   className={cn(
                     'text-[0.9375rem] font-semibold',
-                    +item.id == selected
-                      ? 'text-primary-50'
-                      : 'text-primary-900'
+                    item.id == selected ? 'text-primary-50' : 'text-primary-900'
                   )}
                 >
                   {item.minGrades
@@ -56,7 +54,7 @@ export default function SelectableItemList({
                 <span
                   className={cn(
                     'text-[0.6875rem] font-medium',
-                    +item.id == selected
+                    item.id == selected
                       ? 'text-primary-100'
                       : 'text-primary-700'
                   )}
@@ -68,9 +66,7 @@ export default function SelectableItemList({
                 <label
                   className={cn(
                     'text-[0.9375rem] font-semibold',
-                    +item.id == selected
-                      ? 'text-primary-50'
-                      : 'text-primary-900'
+                    item.id == selected ? 'text-primary-50' : 'text-primary-900'
                   )}
                 >
                   {item.average?.toFixed(2)}
@@ -78,7 +74,7 @@ export default function SelectableItemList({
                 <span
                   className={cn(
                     'text-[0.6875rem] font-medium',
-                    +item.id == selected
+                    item.id == selected
                       ? 'text-primary-100'
                       : 'text-primary-700'
                   )}

@@ -6,6 +6,7 @@ import '@/lib/fontawesome/css/fa.css';
 import { Toaster } from '@/components/ui/toaster';
 import { getSubjects } from '@/api/subjects';
 import { parseSubjects } from '@/lib/nic-parser';
+import { recommendStrategies } from '@/lib/recommendations';
 
 const inter = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],

@@ -18,3 +18,11 @@ export interface Subject {
   grades: number | null | undefined;
   average: number | null | undefined;
 }
+
+export interface FullSubject {
+  id: string;
+  name: string;
+  grades: Grade[];
+  absences: Absence[];
+  icon: string;
+}

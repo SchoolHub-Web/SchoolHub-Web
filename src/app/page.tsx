@@ -16,7 +16,6 @@ type AppCardProps = {
   description: string;
   icon: ReactNode;
   href: string;
-  comingSoon?: boolean;
 };
 
 const applications: AppCardProps[] = [
@@ -24,8 +23,7 @@ const applications: AppCardProps[] = [
     title: 'Grade Calculator',
     description: 'Calculate and manage your grades easily',
     icon: <Calculator className='h-8 w-8' />,
-    href: '/grade-calculator',
-    comingSoon: true
+    href: '/grade-calculator'
   },
   {
     title: 'Classbook',
@@ -60,7 +58,6 @@ export default function () {
           >
             <div className='flex items-center gap-2 text-primary-600'>
               <div>{app.icon}</div>
-              {app.comingSoon && <div>(Coming soon!)</div>}
             </div>
             <h3 className='text-xl font-semibold text-primary-900'>
               {app.title}

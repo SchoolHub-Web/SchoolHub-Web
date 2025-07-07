@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 interface IFormInput {
   email: string;
   NICUser: string;
+  NICURL: string;
   NICPassword?: string;
   GeminiKey?: string;
   useNIC: boolean;
@@ -25,6 +26,7 @@ interface ProfileFormProps {
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
   NICUser: yup.string().required('NIC user is required'),
+  NICURL: yup.string().required('NIC URL is required'),
   NICPassword: yup.string(),
   GeminiKey: yup.string(),
   useNIC: yup.boolean().required()
@@ -41,6 +43,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
     defaultValues: {
       email: defaultValues?.email ?? '',
       NICUser: defaultValues?.NICUser ?? '',
+      NICURL: defaultValues?.NICURL ?? '',
       NICPassword: '',
       GeminiKey: '',
       useNIC: false
@@ -94,6 +97,14 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
               disabled={!watch('useNIC')}
               placeholder='NIC Password...'
               label='NoteInCatalog Password'
+              register={register('NICPassword')}
+              error={errors.NICPassword?.message}
+              password
+            />
+            <FormInput
+              disabled={!watch('useNIC')}
+              placeholder='NIC URL...'
+              label='NoteInCatalog URL'
               register={register('NICPassword')}
               error={errors.NICPassword?.message}
               password

@@ -19,7 +19,7 @@ export default function SubjectHeaderCard({
     <div>
       <div className='flex flex-col gap-5 rounded-2xl bg-white px-5 pb-6 pt-5'>
         <div className='flex items-center'>
-          <img className='h-9' src={`/${icon}.png`} alt='icon' />
+          {/*<img className='h-9' src={`/${icon}.png`} alt='icon' />*/}
           <div className='flex flex-col'>
             <h3 className='text-base font-semibold leading-tight text-primary-900'>
               {title}
