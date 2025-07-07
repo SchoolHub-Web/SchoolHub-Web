@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "use_nic" boolean DEFAULT false NOT NULL;

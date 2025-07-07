@@ -22,7 +22,7 @@ export function Header() {
       <div className='flex grow basis-0 items-center'>
         <AnimatedTabs tabs={tabs} />
       </div>
-      <Profile className='grow basis-0' src='/leaf.png' />
+      <Profile className='grow basis-0' />
     </div>
   );
 }
